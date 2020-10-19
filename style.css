@@ -4,7 +4,7 @@ body {
 
 .article {
     background-color: #ffffff;
-    padding: 1rem;
+    padding: 2rem;
     margin: 0 auto;
     max-width: 1114px;
     border-radius: 7px;
@@ -16,7 +16,7 @@ body {
 }
 
 .search--input {
-    width: calc(100% * 55 / 297);
+    width: calc(100% * 55 );
     padding: 10px 16px 10px 16px;
     border-color: rgba(0, 0, 0, 0.2);
 }
@@ -24,5 +24,116 @@ body {
 .city-name {
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
+    /* height: 55px; */
+}
+
+.search--button {
+    color: transparent;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    background-image: url('./svg/searchIcon.svg');
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-color: transparent;
+}
+
+/* ----------- */
+.stays--container {
+    margin-top: 35px;
+}
+
+.stays--heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text--heading {
+    margin: 0;
+    font-size: 18px;
+}
+
+.stays--list {
+    list-style: none;
+    padding: 0;
+}
+
+.stays--list-item {
+    margin-bottom: 28px;
+}
+
+.stays--photo {
+    width: 100%;
+    border-radius: 24px;
+    height: 239px;
+}
+
+.stays--desc {
+    display: flex;
+    justify-content: space-between;
+}
+
+.supper-host {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: uppercase;
+    color: #4F4F4F;
+    border: 1px solid #4F4F4F;
+    box-sizing: border-box;
+    border-radius: 12px;
+    padding: 2px;
+}
+
+.type {
+    font-size: 14px;
+    line-height: 17px;
+    color: #828282;
+}
+
+.rating {
+    padding-left: 2rem;
+    background-image: url('./svg/starIcon.svg');
+    background-position: 10%;
+    background-repeat: no-repeat;
+    background-size: 15px;
+}
+
+@media(min-width: 620px) {
+    .headeing-and-searchForm {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .search--form {
+       align-items: center;
+    } 
+
+    .search--input {
+        padding-top: 0;
+        padding-bottom: 0;
+        height: 30px;
+    }
+
+    .city-name {
+        height: 34px;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .search--button {
+        height: 34px;
+    }
+
+    .stays--list {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    .stays--list-item {
+        flex-basis: 30%;
+        align-items: baseline;
+    }
 
 }
