@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/lightme-fan/airbnb-clone#readme",
   "browserslist": [
-		"last 1 chrome versions"
-	],
+    "last 1 chrome versions"
+  ],
   "dependencies": {
     "react": "^16.13.1",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "^16.13.1"
   }
 }

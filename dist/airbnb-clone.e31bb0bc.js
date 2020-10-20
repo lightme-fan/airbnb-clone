@@ -28357,7 +28357,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./svg\\searchIcon.svg":[["searchIcon.e529dcea.svg","svg/searchIcon.svg"],"svg/searchIcon.svg"],"./svg\\starIcon.svg":[["starIcon.88946e82.svg","svg/starIcon.svg"],"svg/starIcon.svg"],"_css_loader":"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"stays.json":[function(require,module,exports) {
+},{"./svg\\starIcon.svg":[["starIcon.88946e82.svg","svg/starIcon.svg"],"svg/starIcon.svg"],"./svg\\searchIcon.svg":[["searchIcon.e529dcea.svg","svg/searchIcon.svg"],"svg/searchIcon.svg"],"_css_loader":"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"stays.json":[function(require,module,exports) {
 module.exports = [{
   "city": "Helsinki",
   "country": "Finland",
@@ -28522,6 +28522,71 @@ function Header(props) {
     alt: "Logo"
   }));
 }
+},{"react":"node_modules/react/index.js"}],"comonents/SearchForm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = SearchForm;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function SearchForm(props) {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("select", {
+    className: "search--input city-name",
+    name: "city",
+    id: "city-select",
+    onChange: props.selectOnchange
+  }, /*#__PURE__*/_react.default.createElement("option", {
+    value: "",
+    defaultValue: true
+  }, "Select a city"), /*#__PURE__*/_react.default.createElement("option", {
+    value: "helsinki"
+  }, "Helsinki,Finland"), /*#__PURE__*/_react.default.createElement("option", {
+    value: "turku"
+  }, "Turku,Finland"), /*#__PURE__*/_react.default.createElement("option", {
+    value: "oulu"
+  }, "Oulu,Finland"), /*#__PURE__*/_react.default.createElement("option", {
+    value: "vaasa"
+  }, "Vaasa,Finland")), /*#__PURE__*/_react.default.createElement("input", {
+    type: "number",
+    name: "guests",
+    value: props.value,
+    className: "search--input guests",
+    placeholder: "Number of guests",
+    onChange: props.inputOnchange
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    type: "submit",
+    className: "hit--button"
+  }, "Search"));
+}
+},{"react":"node_modules/react/index.js"}],"comonents/Modal.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Modal;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Modal() {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    className: "button--search searchBtn"
+  }, "Location"), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    className: "button--search searchBtn"
+  }, "Number of guests"), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    className: "search--button searchBtn"
+  }, "Search"));
+}
 },{"react":"node_modules/react/index.js"}],"comonents/StayComponent.js":[function(require,module,exports) {
 "use strict";
 
@@ -28590,6 +28655,10 @@ var _logo = _interopRequireDefault(require("./../svg/logo.svg"));
 
 var _Header = _interopRequireDefault(require("./Header"));
 
+var _SearchForm = _interopRequireDefault(require("./SearchForm"));
+
+var _Modal = _interopRequireDefault(require("./Modal"));
+
 var _StayComponent = _interopRequireDefault(require("./StayComponent"));
 
 var _StaysHeading = _interopRequireDefault(require("./StaysHeading"));
@@ -28602,61 +28671,57 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+console.log(_stays.default);
+
 function App() {
-  // const [ stays, setPlaces ] = useState(stay)
-  const [searchTerm, setSearchTerm] = (0, _react.useState)('');
-  const [searchResults, setSearchResults] = (0, _react.useState)([]);
+  const [selectCity, setselectCity] = (0, _react.useState)('');
+  const [guests, setGuests] = (0, _react.useState)('');
+  const [searchResults, setSearchResults] = (0, _react.useState)([]); // Handle Select
 
-  const handleChange = e => {
-    // e.preventDefault()
-    setSearchTerm(e.target.value);
-  };
+  function handleSelect(e) {
+    setselectCity(e.target.value);
 
-  (0, _react.useEffect)(() => {
-    const filteredByCity = _stays.default.filter(stay => stay.maxGuests);
+    const filteredByCity = _stays.default.filter(stay => stay.city.toLocaleLowerCase() === e.target.value);
 
     setSearchResults(filteredByCity);
-  }, [searchTerm]);
+    console.log(filteredByCity);
+  } // Handle input
+
+
+  function handleInput(e) {
+    setGuests(e.target.value);
+
+    const filteredByGuests = _stays.default.filter(stay => stay.maxGuests.toString() === e.target.value);
+
+    setSearchResults(filteredByGuests);
+    console.log(filteredByGuests);
+  }
+
+  function handleClick(e) {
+    console.log(e.target);
+  }
+
   return /*#__PURE__*/_react.default.createElement("article", {
     className: "article"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "headeing-and-searchForm"
   }, /*#__PURE__*/_react.default.createElement(_Header.default, {
     logo: _logo.default
-  }), /*#__PURE__*/_react.default.createElement("form", {
-    className: "search--form",
-    onSubmit: e => e.preventDefault()
-  }, /*#__PURE__*/_react.default.createElement("select", {
-    className: "search--input city-name",
-    name: "city",
-    id: "city-select" // onChange={handleChange}
-
-  }, /*#__PURE__*/_react.default.createElement("option", {
-    value: "Helsinki"
-  }, "Helsinki,Finland"), /*#__PURE__*/_react.default.createElement("option", {
-    value: "Turku"
-  }, "Turku,Finland"), /*#__PURE__*/_react.default.createElement("option", {
-    value: "Oulu"
-  }, "Oulu,Finland"), /*#__PURE__*/_react.default.createElement("option", {
-    value: "Vaasa"
-  }, "Vaasa,Finland")), /*#__PURE__*/_react.default.createElement("input", {
-    type: "number",
-    name: "guests",
-    value: searchTerm,
-    className: "search--input guests",
-    onChange: handleChange
-  }), /*#__PURE__*/_react.default.createElement("button", {
-    type: "submit",
-    className: "search--button"
-  }, "Search"))), /*#__PURE__*/_react.default.createElement("div", {
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "modal"
+  }, /*#__PURE__*/_react.default.createElement(_Modal.default, {
+    onClick: handleClick
+  }))), /*#__PURE__*/_react.default.createElement("div", {
     className: "stays--container"
   }, /*#__PURE__*/_react.default.createElement(_StaysHeading.default, null), /*#__PURE__*/_react.default.createElement("ul", {
     className: "stays--list"
-  }, searchResults.map(stay => /*#__PURE__*/_react.default.createElement(_StayComponent.default, _extends({
+  }, selectCity || guests ? searchResults.map(stay => /*#__PURE__*/_react.default.createElement(_StayComponent.default, _extends({
+    key: stay.rating
+  }, stay))) : _stays.default.map(stay => /*#__PURE__*/_react.default.createElement(_StayComponent.default, _extends({
     key: stay.rating
   }, stay))))));
 }
-},{"react":"node_modules/react/index.js","./../style.css":"style.css","./../stays.json":"stays.json","./../svg/logo.svg":"svg/logo.svg","./Header":"comonents/Header.js","./StayComponent":"comonents/StayComponent.js","./StaysHeading":"comonents/StaysHeading.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./../style.css":"style.css","./../stays.json":"stays.json","./../svg/logo.svg":"svg/logo.svg","./Header":"comonents/Header.js","./SearchForm":"comonents/SearchForm.js","./Modal":"comonents/Modal.js","./StayComponent":"comonents/StayComponent.js","./StaysHeading":"comonents/StaysHeading.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -28696,7 +28761,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49635" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63737" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

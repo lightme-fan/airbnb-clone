@@ -24,19 +24,15 @@ body {
 .city-name {
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
-    /* height: 55px; */
 }
 
-.search--button {
-    color: transparent;
+.hit--button {
+    color: #ffffff;
+    height: 40px;
     border-color: rgba(0, 0, 0, 0.2);
+    background-color: #EB5757;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
-    background-image: url('./svg/searchIcon.svg');
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-color: transparent;
 }
 
 /* ----------- */
@@ -100,6 +96,32 @@ body {
     background-size: 15px;
 }
 
+/* ----------- */
+.modal {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.button--search {
+    background-color: #ffffff;
+    height: 34px;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+
+.search--button {
+    color: transparent;
+    border-color: rgba(0, 0, 0, 0.2);
+    background-image: url('./svg/searchIcon.svg');
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-color: transparent;
+    height: 34px;
+}
+
 @media(min-width: 620px) {
     .headeing-and-searchForm {
         display: flex;
@@ -122,6 +144,10 @@ body {
     }
 
     .search--button {
+        height: 34px;
+    }
+
+    .hit--button {
         height: 34px;
     }
 
