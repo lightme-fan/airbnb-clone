@@ -28563,7 +28563,7 @@ function SearchForm(props) {
     className: "hit--button"
   }, "Search"));
 }
-},{"react":"node_modules/react/index.js"}],"comonents/Modal.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"comonents/Button.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28657,7 +28657,7 @@ var _Header = _interopRequireDefault(require("./Header"));
 
 var _SearchForm = _interopRequireDefault(require("./SearchForm"));
 
-var _Modal = _interopRequireDefault(require("./Modal"));
+var _Button = _interopRequireDefault(require("./Button"));
 
 var _StayComponent = _interopRequireDefault(require("./StayComponent"));
 
@@ -28671,12 +28671,11 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-console.log(_stays.default);
-
 function App() {
   const [selectCity, setselectCity] = (0, _react.useState)('');
   const [guests, setGuests] = (0, _react.useState)('');
-  const [searchResults, setSearchResults] = (0, _react.useState)([]); // Handle Select
+  const [searchResults, setSearchResults] = (0, _react.useState)([]);
+  const [open, setOpen] = (0, _react.useState)(false); // Handle Select
 
   function handleSelect(e) {
     setselectCity(e.target.value);
@@ -28697,20 +28696,19 @@ function App() {
     console.log(filteredByGuests);
   }
 
-  function handleClick(e) {
-    console.log(e.target);
-  }
-
   return /*#__PURE__*/_react.default.createElement("article", {
     className: "article"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "headeing-and-searchForm"
   }, /*#__PURE__*/_react.default.createElement(_Header.default, {
     logo: _logo.default
-  }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "modal"
-  }, /*#__PURE__*/_react.default.createElement(_Modal.default, {
-    onClick: handleClick
+  }), /*#__PURE__*/_react.default.createElement("form", {
+    className: "search--form",
+    onSubmit: e => e.preventDefault()
+  }, /*#__PURE__*/_react.default.createElement(_SearchForm.default, {
+    value: guests,
+    selectOnchange: handleSelect,
+    inputOnchange: handleInput
   }))), /*#__PURE__*/_react.default.createElement("div", {
     className: "stays--container"
   }, /*#__PURE__*/_react.default.createElement(_StaysHeading.default, null), /*#__PURE__*/_react.default.createElement("ul", {
@@ -28721,7 +28719,7 @@ function App() {
     key: stay.rating
   }, stay))))));
 }
-},{"react":"node_modules/react/index.js","./../style.css":"style.css","./../stays.json":"stays.json","./../svg/logo.svg":"svg/logo.svg","./Header":"comonents/Header.js","./SearchForm":"comonents/SearchForm.js","./Modal":"comonents/Modal.js","./StayComponent":"comonents/StayComponent.js","./StaysHeading":"comonents/StaysHeading.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./../style.css":"style.css","./../stays.json":"stays.json","./../svg/logo.svg":"svg/logo.svg","./Header":"comonents/Header.js","./SearchForm":"comonents/SearchForm.js","./Button":"comonents/Button.js","./StayComponent":"comonents/StayComponent.js","./StaysHeading":"comonents/StaysHeading.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -28761,7 +28759,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63737" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65300" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
