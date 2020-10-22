@@ -7,58 +7,71 @@ import SearchForm from './SearchForm'
 import Button from './Button'
 import Stays from './StayComponent'
 import StaysHeading from './StaysHeading'
+import Popup from './Modal';
 
 export default function App() {
     const [ selectCity, setselectCity ] = useState('')
     const [ guests, setGuests ] = useState('')
     const [ searchResults, setSearchResults ] = useState([])
-    const [open, setOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
+ 
+    // Popup
+    const togglePopup = () => {
+        setIsOpen(!isOpen);
+    }
+
+    // Popup
+    const hidePopup = () => {
+        setIsOpen(isOpen);
+    }
     
     // Handle Select
     function handleSelect(e) {
         setselectCity(e.target.value)
         const filteredByCity = stays.filter(stay => stay.city.toLocaleLowerCase() === e.target.value)
-        setSearchResults(filteredByCity)
-        console.log(filteredByCity);
+        setSearchResults(filteredByCity);
     }
 
     // Handle input
     function handleInput(e) {
         setGuests(e.target.value)
         const filteredByGuests = stays.filter(stay => stay.maxGuests.toString() === e.target.value)
-        setSearchResults(filteredByGuests)
-        console.log(filteredByGuests);
+        setSearchResults(filteredByGuests);
+        
     }   
-
+  
     return (
         <article className='article'>
             <div className='headeing-and-searchForm'>
                 <Header logo={logo}/>
-                {/* <Button
-                    onClick={() => setOpen(!open)}
-                    aria-controls="example-collapse-text"
-                    aria-expanded={open}
-                >
-                </Button> */}
-                {/* <Collapse in={open}>
-                    <div id="example-collapse-text">
-                        <form className='search--form' onSubmit={(e) => e.preventDefault()}>                
-                            <SearchForm value={guests} selectOnchange={handleSelect} inputOnchange={handleInput}/>
-                        </form>
-                    </div>
-                </Collapse> */}
-
-                <form className='search--form' onSubmit={(e) => e.preventDefault()}>                
-                    <SearchForm value={guests} selectOnchange={handleSelect} inputOnchange={handleInput}/>
-                </form>
-
+                
+                <div>
+                    <Button handleClick={togglePopup} onHide={hidePopup}/>
+                    { isOpen ? <Popup 
+                        content={
+                            <>
+                                <form className='search--form' onSubmit={e => preventDefault()}>                
+                                    <SearchForm 
+                                        value={guests} 
+                                        selectOnchange={handleSelect} 
+                                        inputOnchange={handleInput} 
+                                    />
+                                </form>
+                            </>
+                        }
+                        handleClose={togglePopup}
+                        />
+                        : ''
+                    }
+                </div>    
             </div>
+
             <div className='stays--container'>
                 <StaysHeading />
                 <ul className='stays--list'>
                     { (selectCity || guests)
                         ? searchResults.map(stay => <Stays key={stay.rating} {...stay} />)
-                        : stays.map(stay => <Stays key={stay.rating} {...stay} />)     
+                        : stays.map(stay => <Stays key={stay.rating} {...stay}/>)     
                     }
                 </ul>
             </div>

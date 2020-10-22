@@ -11,28 +11,36 @@ body {
 }
 
 .search--form {
-    display: flex;
-    justify-content: center;
+    /* padding-bottom: 103px; */
+    margin-top: 16px;
 }
 
 .search--input {
-    width: calc(100% * 55 );
+    /* width: calc(100% * 55 ); */
     padding: 10px 16px 10px 16px;
     border-color: rgba(0, 0, 0, 0.2);
 }
 
-.city-name {
-    border-top-left-radius: 7px;
-    border-bottom-left-radius: 7px;
+.search--form > .city-name {
+    width: 100%;
+    border-radius: 7px;
+    margin-bottom: 1rem;
+}
+
+.search--form > .guests {
+    width: 87%;
+    border-radius: 7px;
 }
 
 .hit--button {
+    width: 100px;
+    margin: auto;
     color: #ffffff;
     height: 40px;
     border-color: rgba(0, 0, 0, 0.2);
     background-color: #EB5757;
-    border-top-right-radius: 7px;
-    border-bottom-right-radius: 7px;
+    border-radius: 7px;
+    margin-top: 24%;
 }
 
 /* ----------- */
@@ -122,14 +130,52 @@ body {
     height: 34px;
 }
 
+/* Popup */
+.popup-box {
+    position: fixed;
+    background: #00000050;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+   
+  .box {
+    position: relative;
+    max-width: 1114px;
+    margin: auto;
+    margin-top: 0;
+    padding-bottom: 1rem;
+    background: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    border: 1px solid #999;
+    overflow: auto;
+  }
+   
+  .close-icon {
+    content: 'x';
+    cursor: pointer;
+    position: fixed;
+    right: 2%;
+    top: 4px;
+    width: 26px;
+    text-align: center;
+    border: 1px solid hsl(0deg 0% 60%);
+  }
+
 @media(min-width: 620px) {
     .headeing-and-searchForm {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        position: relative;
     }
 
     .search--form {
        align-items: center;
+       display: flex;
+       padding-bottom: 11%;
     } 
 
     .search--input {
@@ -138,17 +184,28 @@ body {
         height: 30px;
     }
 
-    .city-name {
+    .search--form > .city-name {
         height: 34px;
         border: 2px solid rgba(0, 0, 0, 0.2);
+        margin-bottom: 0;
     }
 
     .search--button {
         height: 34px;
     }
 
+    .button--wrap {
+        width: 100%;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        border-radius: 7px;
+        display: flex;
+        justify-content: center;
+    }
+
     .hit--button {
         height: 34px;
+        margin: 0;
+        align-self: center;
     }
 
     .stays--list {
@@ -162,4 +219,7 @@ body {
         align-items: baseline;
     }
 
+    .close-icon {
+        right: 8%;
+    }
 }

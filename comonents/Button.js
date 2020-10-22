@@ -1,11 +1,29 @@
 import React from 'react'
+import { propTypes } from 'react-bootstrap/esm/Image'
 
-export default function Modal() {
+export default function Modal(props) {
     return (
         <>
-            <button type='button' className='button--search searchBtn'>Location</button>
-            <button type='button' className='button--search searchBtn'>Number of guests</button>
-            <button type='button' className='search--button searchBtn'>Search</button>
+            <input
+                type="button"
+                value="Location"
+                onClick={props.handleClick}
+                className='button--search searchBtn'
+            />
+
+            <input
+                type="button"
+                value="Number of guests"
+                onClick={props.handleClick}
+                className='button--search searchBtn'
+            />
+
+            <input
+                type="button"
+                value="Search"
+                onClick={props.handleClick}
+                className='search--button searchBtn'
+            />
         </>
     )
 }
