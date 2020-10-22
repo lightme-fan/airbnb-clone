@@ -164,6 +164,21 @@ body {
     border: 1px solid hsl(0deg 0% 60%);
   }
 
+  .increament-number {
+    display: flex;
+  }
+
+  .increament-number > h3 {
+    margin: 0;
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  .increament-number > button {
+      height: 20px;
+      align-items: center;
+  }
+
 @media(min-width: 620px) {
     .headeing-and-searchForm {
         display: flex;

@@ -4,16 +4,25 @@ import stays from './../stays.json'
 import logo from './../svg/logo.svg'
 import Header from './Header'
 import SearchForm from './SearchForm'
-import Button from './Button'
+import GuestsBtn from './GuestsBtn'
+import LocationBtn from './LocationBtn'
+import SearchBtn from './SearchBtn'
+
 import Stays from './StayComponent'
 import StaysHeading from './StaysHeading'
 import Popup from './Modal';
+import AdultNum from './AdultGuests';
+import ChildrenNum from './ChildrenGuests';
+
 
 export default function App() {
   const [selectCity, setselectCity] = useState('')
   const [guests, setGuests] = useState('')
   const [searchResults, setSearchResults] = useState([])
   const [isOpen, setIsOpen] = useState(false);
+
+  const [ count, setCount ] = useState(0)
+  const [ childCount, setChildCount ] = useState(0)
 
   // Popup
   const togglePopup = () => {
@@ -46,8 +55,27 @@ export default function App() {
         <Header logo={logo} />
 
         <div>
-          <Button handleClick={togglePopup} onHide={hidePopup} />
-          {isOpen ? <Popup
+          <GuestsBtn handleClickNum={togglePopup}/>
+          {isOpen && <Popup
+            content={
+              <>
+                <form className='search--form' onSubmit={e => preventDefault()}>
+                  <SearchForm
+                    value={guests}
+                    selectOnchange={handleSelect}
+                    inputOnchange={handleInput}
+                  />
+                  <AdultNum number={count} dicreament={() => setCount(count - 1)} increament={() => setCount(count + 1)}/>
+                  <ChildrenNum number={childCount} dicreamentChild={() => setChildCount(childCount - 1)} increamentChild={() => setChildCount(childCount + 1)}/>
+                </form>
+              </>
+            }
+            handleClose={togglePopup}
+          /> 
+          }
+
+          <LocationBtn handleClickLocation={togglePopup}/>
+          {isOpen && <Popup
             content={
               <>
                 <form className='search--form' onSubmit={e => preventDefault()}>
@@ -61,7 +89,23 @@ export default function App() {
             }
             handleClose={togglePopup}
           />
-            : ''
+          }
+
+          <SearchBtn handleClick={togglePopup}/>          
+          {isOpen && <Popup
+            content={
+              <>
+                <form className='search--form' onSubmit={e => preventDefault()}>
+                  <SearchForm
+                    value={guests}
+                    selectOnchange={handleSelect}
+                    inputOnchange={handleInput}
+                  />
+                </form>
+              </>
+            }
+            handleClose={togglePopup}
+          />
           }
         </div>
       </div>

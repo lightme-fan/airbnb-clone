@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function SearchForm(props) {
+  const [ count, setCount ] = useState(0)
   return (
     <>
       <select
@@ -23,6 +24,7 @@ export default function SearchForm(props) {
         placeholder='Number of guests'
         onChange={props.inputOnchange}
       />
+
       <span className='button--wrap'>
         <button type='submit' className='hit--button'>Search</button>
       </span>
